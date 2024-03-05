@@ -1,12 +1,12 @@
 import express from "express";
 import connectDB from "./config/connectDB.js";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-import Tasks from "./models/TaskModel.js";
+import router from "./routes/taskRoutes.js";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/tasks", router);
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 
@@ -14,14 +14,8 @@ app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-app.post("/api/tasks", async (req, res) => {
-  try {
-    const task = await Tasks.create(req.body);
-    res.status(201).json(task);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+
+
 const startServer = async () => {
   try {
     await connectDB();
