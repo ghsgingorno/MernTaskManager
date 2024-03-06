@@ -1,8 +1,15 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import TaskList from "./components/TaskList";
+
 function App() {
   return (
-    <div>
-      <h1>Welcome to our page!</h1>
-      <p>This is a simple example of how you can use the React library.</p>
+    <div className="app">
+      <div className="task-container">
+        <TaskList />
+      </div>
+      <ToastContainer />
     </div>
   );
 }
